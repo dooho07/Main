@@ -1,0 +1,201 @@
+<!-- saved from url=(0013)about:internet -->
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis" />
+<title>The Last 10-Second</title>
+<script language="javascript"> AC_FL_RunContent = 0; </script>
+<script src="AC_RunActiveContent.js" language="javascript"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+// -----------------------------------------------------------------------------
+// グローバル
+// Flash のメジャーバージョンが必要です
+var requiredMajorVersion = 6;
+// Flash のマイナーバージョンが必要です
+var requiredMinorVersion = 0;
+// 必要な Flash のバージョン
+var requiredRevision = 0;
+// -----------------------------------------------------------------------------
+// -->
+</script>
+<script language="VBScript" type="text/vbscript">
+<!-- // Flash Player ActiveX コントロールのバージョン情報を検出するには、Visual Basic ヘルパーが必要です
+Function VBGetSwfVer(i)
+  on error resume next
+  Dim swControl, swVersion
+  swVersion = 0
+  
+  set swControl = CreateObject("ShockwaveFlash.ShockwaveFlash." + CStr(i))
+  if (IsObject(swControl)) then
+    swVersion = swControl.GetVariable("$version")
+  end if
+  VBGetSwfVer = swVersion
+End Function
+// -->
+</script>
+<script language="JavaScript1.1" type="text/javascript">
+<!-- 
+// クライアントのブラウザのタイプを検出
+var isIE  = (navigator.appVersion.indexOf("MSIE") != -1) ? true : false;
+var isWin = (navigator.appVersion.toLowerCase().indexOf("win") != -1) ? true : false;
+var isOpera = (navigator.userAgent.indexOf("Opera") != -1) ? true : false;
+// Flash Player プラグインのバージョン情報を検出するには、JavaScript ヘルパーが必要です
+function JSGetSwfVer(i){
+	// プラグイン配列内の Flash プラグインについて NS/Opera バージョンが 3 以上かどうかを確認します
+	var flashVer = -1;
+	if (navigator.plugins != null && navigator.plugins.length > 0) {
+		if (navigator.plugins["Shockwave Flash 2.0"] || navigator.plugins["Shockwave Flash"]) {
+			var swVer2 = navigator.plugins["Shockwave Flash 2.0"] ? " 2.0" : "";
+      		var flashDescription = navigator.plugins["Shockwave Flash" + swVer2].description;
+			var descArray = flashDescription.split(" ");
+			var tempArrayMajor = descArray[2].split(".");
+			var versionMajor = tempArrayMajor[0];
+			var versionMinor = tempArrayMajor[1];
+			if ( descArray[3] != "" ) {
+				tempArrayMinor = descArray[3].split("r");
+			} else {
+				tempArrayMinor = descArray[4].split("r");
+			}
+      		var versionRevision = tempArrayMinor[1] > 0 ? tempArrayMinor[1] : 0;
+            var flashVer = versionMajor + "." + versionMinor + "." + versionRevision;
+		}
+	}
+	// MSN/WebTV 2.6 は Flash 4 をサポートしています
+	else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1) flashVer = 4;
+	// WebTV 2.5 は Flash 3 をサポートしています
+	else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1) flashVer = 3;
+	// それ以前のバージョンの WebTV は Flash 2 をサポートしています
+	else if (navigator.userAgent.toLowerCase().indexOf("webtv") != -1) flashVer = 2;
+	return flashVer;
+} 
+// IE Flash 
+function isFlash_IE(i){
+	var hasFlash = false;
+
+	try {
+	  if (new ActiveXObject('ShockwaveFlash.ShockwaveFlash')) {
+  		  hasFlash = true;
+ 	  }
+	}catch(e){
+	  if (navigator.mimeTypes["application/x-shockwave-flash"] != undefined) {
+    		hasFlash = true;
+ 	  }
+	}
+	return hasFlash;
+}
+// reqMajorVer を指定して呼び出した場合、reqMinorVer、reqRevision は、それ以上のバージョンが使用可能なときには true を返します
+function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) 
+{
+ 	reqVer = parseFloat(reqMajorVer + "." + reqRevision);
+   	// 最新のバージョンを見つけるまで、バージョンを遡ってループします	
+	for (i=25;i>0;i--) {	
+		if (isIE && isWin && !isOpera) {
+			//versionStr = VBGetSwfVer(i);　// Supported for Win10(build 17763.437)
+			if (isFlash_IE) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			versionStr = JSGetSwfVer(i);		
+		}
+		if (versionStr == -1 ) { 
+			return false;
+		} else if (versionStr != 0) {
+			if(isIE && isWin && !isOpera) {
+				tempArray         = versionStr.split(" ");
+				tempString        = tempArray[1];
+				versionArray      = tempString .split(",");				
+			} else {
+				versionArray      = versionStr.split(".");
+			}
+			var versionMajor      = versionArray[0];
+			var versionMinor      = versionArray[1];
+			var versionRevision   = versionArray[2];
+			
+			var versionString     = versionMajor + "." + versionRevision;   // 7.0r24 == 7.24
+			var versionNum        = parseFloat(versionString);
+        	// メジャーバージョンは要求されたメジャーバージョン以上であり、かつマイナーバージョンは要求されたマイナーバージョン以上の場合
+			if (versionMajor > reqMajorVer) {
+				return true;
+			} else if (versionMajor == reqMajorVer) {
+				if (versionMinor > reqMinorVer)
+					return true;
+				else if (versionMinor == reqMinorVer) {
+					if (versionRevision >= reqRevision)
+						return true;
+				}
+			}
+			return false;
+		}
+	}
+}
+// -->
+</script>
+<style type="text/css">
+<!--
+body {
+	background-color: #dddddd;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style></head>
+<body>
+<center>
+<!--ムービーで使用されている URL-->
+<a href="http://weathernews.jp/quake/"></a>
+<!--ムービーで使用されているテキスト-->
+<!--
+<p align="center"><font face="_ゴシック" size="12" color="#ffffff" letterSpacing="0.000000" kerning="0">データファイルが読み込めませんでした</font></p>
+<p align="center"><font face="_ゴシック" size="12" color="#ffffff" letterSpacing="0.000000" kerning="0">データファイルが更新されました</font></p>
+-->
+<script language="JavaScript" type="text/javascript">
+<!-- 
+var hasRightVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+if(hasRightVersion) {  // 使用可能なバージョンが検出された場合
+	if (AC_FL_RunContent == 0) {
+		alert("このページでは \"AC_RunActiveContent.js\" が必要です。Flash の [コマンド] メニューから [アクティブ コンテンツ アップデートを適用] を実行して \"AC_RunActiveContent.js\" を HTML の出力フォルダにコピーします。");
+	} else {
+		// Flash ムービーの埋め込み
+		AC_FL_RunContent(
+			'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0',
+			'width', '640',
+			'height', '480',
+			'src', 'realtime_quake5',
+			'quality', 'high',
+			'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+			'align', 'middle',
+			'play', 'true',
+			'loop', 'true',
+			'scale', 'showall',
+			'wmode', 'window',
+			'devicefont', 'false',
+			'id', 'realtime_quake5',
+			'bgcolor', '#ffffff',
+			'name', 'realtime_quake5',
+			'menu', 'false',
+			'allowScriptAccess','sameDomain',
+			'movie', 'realtime_quake5',
+			'salign', ''
+			); //end AC code
+	}
+  } else {  // Flash が古すぎるか、プラグインを検出できません
+    var alternateContent =
+  	'<p>このコンテンツには Flash Player が必要です。</p>'
+   	+ '<p><a href="http://www.macromedia.com/go/getflash/">Flash Player のインストール</a></p>'
+	+ '<p>インストール後にソフトウェア「The Last 10-Second」を再起動してください。</p>';
+    document.write(alternateContent);  // Flash 以外のコンテンツを挿入する
+  }
+// -->
+</script>
+<noscript>
+	<p>このコンテンツには Flash Player が必要です。</p>
+	<p>	  <a href="http://www.macromedia.com/go/getflash/">Flash Player のインストール</a>        </p>
+	<p>インストール後にソフトウェア「The Last 10-Second」を再起動してください。</p>
+</noscript>
+</center>
+</body>
+</html>
